@@ -7,7 +7,12 @@
     <title>index</title>
 </head>
 <body>
-    <h1>Hello</h1>
+    <h1>Hello/Index</h1>
     <p>{{ $msg }}</p>
+    <ul>
+        @foreach($data as $data)
+            <li>{!! $data !!}</li>
+        @endforeach
+    </ul>
 </body>
 </html>

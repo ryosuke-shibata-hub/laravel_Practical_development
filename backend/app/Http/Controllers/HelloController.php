@@ -4,13 +4,40 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Person;
 
 class HelloController extends Controller
 {
-    public function index(Request $request)
+    function __construct()
     {
+        config(['sample.message' => '新しいメッセージ！']);
+    }
+    // public function index(Request $request)
+    // {
+    //     $data = [
+    //         'msg' => $request->hello,
+    //     ];
+
+    //     return view('hello.index',$data);
+    // }
+
+    // public function index($person)
+    // {
+    //     $data = [
+    //         'msg' => $person,
+    //     ];
+
+    //     return view('hello.index',$data);
+    // }
+
+    public function index()
+    {
+        $sample_msg = config('sample.message');
+        $sample_data = config('sample.data');
+
         $data = [
-            'msg' => $request->hello,
+            'msg' => $sample_msg,
+            'data' => $sample_data,
         ];
 
         return view('hello.index',$data);
