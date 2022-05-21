@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Person;
 
@@ -30,16 +31,61 @@ class HelloController extends Controller
     //     return view('hello.index',$data);
     // }
 
-    public function index()
+    // public function index(Request $request,Response $response)
+    // {
+    //     $msg = 'please input text';
+    //     $keys = [];
+    //     $values = [];
+
+    //     if($request->isMethod('post')) {
+    //         // $form = $request->all();
+    //         $form = $request->only(['name','mail']);
+    //         $keys = array_keys($form);
+    //         $values = array_values($form);
+    //         $msg = old('name') . ', ' . old('mail') . ', ' . old('tel');
+    //         // $result = '<html><body>';
+
+    //         // foreach ($form as $key => $value) {
+    //         //     $result .= $key . ': ' . $value . "<br>";
+    //         // }
+
+    //         // $result .= '</body></html>';
+    //         // $response->setContent($result);
+    //         // return $response;
+    //         $data = [
+    //         'msg' => $msg,
+    //         'keys' => $keys,
+    //         'values' => $values,
+    //     ];
+    //         $request->flash();
+    //         return view('hello.index',$data);
+    //     }
+
+    //     $data = [
+    //         'msg' => $msg,
+    //         'keys' => $keys,
+    //         'values' => $values,
+    //     ];
+    //     $request->flash();
+    //     return view('hello.index',$data);
+    // }
+
+    public function index(Request $request,Response $response)
     {
-        $sample_msg = config('sample.message');
-        $sample_data = config('sample.data');
+        $name = $request->query('name');
+        $mail = $request->query('mail');
+        $tel = $request->query('tel');
+        $msg = $name . ', ' . $mail . ', ' . $tel;
+        $keys = ['名前','メール','電話'];
+        $values = [$name,$mail,$tel];
 
         $data = [
-            'msg' => $sample_msg,
-            'data' => $sample_data,
+            'msg' => $msg,
+            'keys' => $keys,
+            'values' => $values,
         ];
 
+        $request->flash();
         return view('hello.index',$data);
     }
 

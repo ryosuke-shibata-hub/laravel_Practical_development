@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::middleware([HelloMiddleware::class])->group(function() {
     Route::get('/hello','HelloController@index')
     ->name('index');
+    Route::post('/hello','HelloController@index');
     // Route::get('/hello/{id}','HelloController@index')
     // ->where('id','[0-9]+');
     Route::get('/hello/other','HelloController@other');
