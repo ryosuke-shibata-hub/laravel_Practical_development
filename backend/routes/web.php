@@ -23,13 +23,16 @@ Route::middleware([HelloMiddleware::class])->group(function() {
     ->name('index');
     // Route::get('/hello/{id}','HelloController@index')
     // ->where('id','[0-9]+');
-    Route::get('/hello/other','HelloController@other');
+    // Route::get('/hello/other','HelloController@other');
+    Route::get('/hello/{msg}','HelloController@other');
 });
 
 Route::namespace('Sample')->group(function()
 {
+    // Route::get('/sample','SampleController@index')
+    // ->name('index');
     Route::get('/sample','SampleController@index')
-    ->name('index');
+    ->name('sample');
     Route::get('/sample/other','SampleController@other')
     ->name('other');
 });
