@@ -25,7 +25,7 @@
     </form>
     <hr>
     <ol>
-        @for($i = 0; $i < count($keys);$i++)
+        @for($i = 0; $i < count($keys); $i++)
             <li>{{ $keys[$i] }}:{{ $values[$i] }}</li>
         @endfor
     </ol>

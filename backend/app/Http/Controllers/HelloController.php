@@ -75,7 +75,8 @@ class HelloController extends Controller
         $name = $request->query('name');
         $mail = $request->query('mail');
         $tel = $request->query('tel');
-        $msg = $name . ', ' . $mail . ', ' . $tel;
+        $msg = $request->query('msg');
+        // $msg = $name . ', ' . $mail . ', ' . $tel;
         $keys = ['名前','メール','電話'];
         $values = [$name,$mail,$tel];
 
@@ -89,12 +90,24 @@ class HelloController extends Controller
         return view('hello.index',$data);
     }
 
-    public function other(Request $request)
+    // public function other(Request $request)
+    // {
+    //     $data = [
+    //         'msg' => $request->bye,
+    //     ];
+
+    //     return view('hello.index',$data);
+    // }
+    public function other()
     {
         $data = [
-            'msg' => $request->bye,
+            'name' => 'taro',
+            'mail' => 'email@email',
+            'tel' => '090-999-999',
         ];
+        $query_str = http_build_query($data);
+        $data['msg'] = $query_str;
 
-        return view('hello.index',$data);
+        return redirect()->route('hello',$data);
     }
 }
